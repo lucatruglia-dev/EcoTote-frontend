@@ -1,0 +1,153 @@
+.card{
+    width: 100%;
+    height: 70px;
+    border-radius: 0px 0px 10px 10px;
+    overflow: hidden;
+}
+
+.card-top{
+    border-bottom-left-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+}
+
+.card-info{
+    width: 100%;
+    height: fit-content;
+    background-color: white;
+}
+
+.card-top, .add-card{
+    width: 100%;
+    height: 70px;
+    background-color: white;
+    color: black !important;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    user-select: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.card-top .icon{
+    width: 45px;
+    height: 50px;
+    margin-left: 15px;
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+}
+
+.card-top .icon img{
+    width: 100%;
+    height: auto;
+}
+
+.card-top .text{
+    line-height: 20px;
+    flex: 1;
+}
+
+.card-top .text .name{
+    font-weight: 600;
+}
+
+.card-top .text .distance{
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.651);
+}
+
+.card-top .buttons{
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: 15px;
+}
+
+.card-top .buttons a,
+.card-top .buttons button{
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--orange);
+    color: white;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.card-top .buttons i {
+    transition: transform 0.3s ease;
+}
+
+.card-top .buttons i.rotate-180 {
+    transform: rotate(180deg);
+}
+
+.add-card i{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--green);
+    color: white;
+    margin-left: 17.5px;
+    font-size: 24px;
+}
+
+.add-card span{
+    font-weight: 600;
+}
+
+.card-info{
+    display: flex;
+    flex-direction: column;
+    padding-block: 15px;
+    align-items: flex-start;
+    gap: 3px;
+}
+
+.card-info .line{
+    margin-left: 18px;
+    font-size: 16px;
+    max-width: 300px;
+}
+
+.card-info .delete-button,
+.card-info .open-button{
+    margin-left: 18px;
+    color: white;
+    font-size: 15px;
+    padding: 8px 20px;
+    width: calc(100% - 36px);
+    border: none;
+    border-radius: 10px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.card-info .delete-button{
+    background-color: var(--orange);
+}
+
+.card-info .open-button{
+    background-color: var(--green);
+}

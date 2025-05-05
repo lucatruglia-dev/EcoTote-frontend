@@ -1,0 +1,84 @@
+.big-card{
+    width: 290px;
+    height: fit-content;
+    background-color: #56BF6E;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px 20px;
+    border-radius: 20px;
+
+}
+
+.big-card .top{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.big-card .top .icon{
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.big-card .top .right{
+    display: flex;
+    flex-direction: column;
+}
+
+.big-card .top .right .title{
+    font-size: 15px;
+    color: white;
+    font-weight: 600;
+}
+
+.big-card .top .right .subtitle{
+    font-size: 14px;
+    color: white;
+    font-weight: 200;
+}
+
+.big-card .content {
+    display: flex;
+    flex-direction: column;
+}
+
+.big-card .content .name{
+    color: white;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.big-card .content .description{
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.big-card .tags{
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.big-card .tags .tag{
+    background-color: rgba(255, 255, 255, 0.24);
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    width: 100px;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 15px;
+}

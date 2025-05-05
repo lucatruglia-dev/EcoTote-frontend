@@ -1,0 +1,174 @@
+.popup-container{
+
+    /* -------------------- */
+    display: flex;
+    /* -------------------- */
+
+    width: 100%;
+    height: calc(100dvh - 20px);
+    padding-bottom: 20px;
+    overflow-y: scroll;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.541);
+    
+    justify-content: center;
+    align-items: flex-start;
+
+    z-index: 9999;
+}
+
+.popup-container .popup{
+    width: 335px;
+    height: fit-content;
+    padding-bottom: 20px;
+    background-color: white;
+    margin-top: 10px;
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+
+    /* transform: translateX(200%);
+    transition: 1s transform; */
+}
+
+.popup-container .popup .line{
+    width: 85%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.popup-container .popup .line input{
+    width: 100%;
+}
+
+.popup-container .select{
+    width: 85%;
+    
+}
+
+.popup-container textarea{
+    width: 250px;
+    background-color: var(--input-bg);
+    height: 100px;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    border-radius: 10px;
+    padding: 10px 16px;
+    resize: none;
+}
+
+
+.popup-container .popup .line input,
+.popup-container .select{
+
+    background-color: var(--input-bg);
+    border: none;
+    height: 40px;
+    border-radius: 10px;
+    text-indent: 15px;
+    font-size: 14px;
+
+    position: relative;
+    overflow: visible !important;
+
+    border: 2px solid transparent;
+}
+
+.popup-container .popup .line.double input{
+    width: 45%;
+}
+
+.popup .title{
+    font-size: 20px;
+    padding-block: 20px;
+}
+
+.popup .avatar-picker{
+    width: 85%;
+    height: 60px;
+    background-color: var(--input-bg);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    border-radius: 10px;
+}
+
+.popup .avatar-picker img{
+    width: 40px;
+    margin-left: 18px;
+}
+
+.popup-container .popup .line input::placeholder,
+.popup .avatar-picker i,
+.popup .avatar-picker span,
+.popup .options .buttons button{
+    color: rgb(128, 128, 128);
+}
+
+.popup .avatar-picker i{
+    font-size: 30px;
+    margin-left: 20px;
+}
+
+.popup .options{
+    width: 85%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.popup .options .label{
+    font-weight: 600;
+}
+
+.popup .options .buttons{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.popup .options .buttons button{
+    width: 46%;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 500;
+}
+
+.popup .options .buttons button.sel{
+    background-color: rgb(128, 128, 128);
+    color: white;
+}
+
+.popup .save-buttons{
+    width: 80%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.popup .save-buttons button{
+    width:  46%;
+    border: none;
+    font-size: 17px;
+    border-radius: 10px;
+    color: white;
+}
+
+.popup .save-buttons button:nth-child(1){
+    background-color: var(--orange);
+}
+.popup .save-buttons button:nth-child(2){
+    background-color: var(--green);
+}

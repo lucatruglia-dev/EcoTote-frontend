@@ -1,0 +1,207 @@
+.page{
+    min-height: 100dvh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--main-bg);
+}
+main{
+    width: 85%;
+    height: 900px;
+    animation: fadeIn 1s ease-in-out;
+}
+header{
+    width: 100%;
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    animation: slideIn 1s ease-in-out;
+}
+
+header .title{
+    font-size: 30px;
+    font-weight: 800;
+}
+
+header .icon{
+    min-width: 70px;
+    min-height: 70px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+header .icon img{
+    width: 50px;
+    height: 50px;
+}
+
+
+.list{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: slideIn 1s ease-in-out;
+    gap: 20px;
+}
+
+.list-filters{
+    width: 100%;
+    height: fit-content;
+}
+
+.list .list-filters .title{
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.list .list-filters .cards-container{
+    width: 100%;
+    height: fit-content;
+    
+    overflow-x: scroll;
+}
+
+.list .list-filters .cards-slider{
+    width: fit-content;
+    height: 70px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.list .list-filters .cards-slider .card{
+    padding: 13px 25px;
+    font-size: 17px;
+    border-radius: 14px;
+    border: none;
+    background-color: var(--input-bg);
+    color: gray;
+}
+
+.list .list-filters .cards-slider .card.sel{
+    background-color: var(--green);
+    color: white;
+}
+
+.big-cards-container{
+    width: 100%;
+    height: fit-content;
+    overflow-x: scroll;
+}
+
+.big-cards-slider{
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    gap: 10px;
+}
+
+
+
+
+.supermarket-container{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.supermarket-container .title{
+    font-weight: 600;
+    font-size: 25px;
+}
+
+.supermarket-container .cards{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.supermarket-container .card{
+    width: 100%;
+    height: 70px;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+}
+
+.supermarket-container .card .icon{
+    width: 45px;
+    height: 45px;
+    background-color: rgba(255, 0, 0, 0.404);
+    margin-left: 15px;
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+}
+
+.supermarket-container .card .icon img{
+    width: 100%;
+    height: auto;
+}
+
+.supermarket-container .card .text{
+    line-height: 20px;
+    flex: 1;
+}
+
+.supermarket-container .card .text .name{
+    font-weight: 500;
+}
+.supermarket-container .card .text .distance{
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.651);
+}
+
+.supermarket-container .card .buttons{
+    width: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-right: 15px;
+}
+
+.supermarket-container .card .buttons a{
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--orange);
+    color: white;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
