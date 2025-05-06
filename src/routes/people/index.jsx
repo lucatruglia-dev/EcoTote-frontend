@@ -1,9 +1,11 @@
 // People.jsx
-import { createSignal } from 'solid-js';
+import { createSignal, onMount } from 'solid-js';
 import PersonaCard from '../../components/PersonaCard/PersonaCard'; // Importa il componente PersonaCard
 import AddPersonaPopup from '../../components/AddPersonaPopup/AddPersonaPopup'; // Importa il componente AddPersonaPopup
 import ChooseAvatar from '../../components/ChooseAvatar/ChooseAvatar';
 import './main.css';
+import getMembers from './api';
+
 
 export default function People() {
   const [personeList, setPersoneList] = createSignal([
@@ -21,6 +23,11 @@ export default function People() {
       expanded: false,
     },
   ]);
+
+  onMount(async () => {
+    const members = await getMembers();
+    console.log(members);
+  });
 
   const [showPopup, setShowPopup] = createSignal(false);
   const [hasChanges, setHasChanges] = createSignal(false);

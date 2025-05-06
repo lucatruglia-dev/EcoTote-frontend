@@ -4,6 +4,7 @@ import { createSignal, Show } from "solid-js";
 import AlertBox from "../../components/AlertBox/AlertBox";
 import nazioniConBandiere from "./nazioni";
 import './main.css'
+import sendRegister from "./register";
 
 export default function Register() {
   const [formData, setFormData] = createSignal({
@@ -159,7 +160,7 @@ export default function Register() {
     return true;
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!validateForm()) {
       return;
     }
@@ -168,13 +169,24 @@ export default function Register() {
     const userData = {
       nome: data.nome,
       cognome: data.cognome,
-      nazione: data.nazione,
-      dataNascita: data.dataNascita,
       email: data.email,
-      password: data.password
+      password: data.password,
+      data_nascita: data.dataNascita,
+      nazione: data.nazione
     };
 
-    console.log("Dati utente:", userData);
+    const response = await sendRegister(userData);
+    
+    if (response.success) {
+      window.location.href = '/user_home';
+    } else {
+      setAlertConfig({
+        icon: "fa-exclamation-circle",
+        message: response.message,
+        subMessage: response.subMessage
+      });
+      setShowAlert(true);
+    }
   };
 
   return (
@@ -254,7 +266,7 @@ export default function Register() {
             checked={formData().tos}
             onChange={handleInputChange}
           />
-          <label htmlFor="tos">Accetto i <A href="#">termini e condizioni</A></label>
+          <label htmlFor="tos">Accetto i <A href="#">termini e condizioni</A> e <A href="#">cookie policy</A></label>
         </div>
         <button className="btn btn-green" onClick={handleSubmit}>
           Continua
