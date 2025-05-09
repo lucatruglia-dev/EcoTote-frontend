@@ -2,6 +2,8 @@ import { createSignal } from 'solid-js';
 import './PersonaCard.css';
 import AddPersonaPopup from '../AddPersonaPopup/AddPersonaPopup'; // Importa il popup
 
+import { deleteMemberAPI } from './api.js';
+
 export default function PersonaCard({ persona, index, toggleExpanded, onEdit }) {
   const [showEditPopup, setShowEditPopup] = createSignal(false);
 
@@ -44,11 +46,17 @@ export default function PersonaCard({ persona, index, toggleExpanded, onEdit }) 
             <span class="line"><b>Dieta: </b> {persona.dieta}</span>
             <span class="line"><b>Preferenze: </b> {persona.altro}</span>
             <button class="edit-button" onClick={() => {
-  console.log("Edit button clicked");
-  setShowEditPopup(true);
-}}>
-  <i class="fa-solid fa-pen-to-square"></i> Modifica
-</button>
+              console.log("Edit button clicked");
+              setShowEditPopup(true);
+            }}>
+              <i class="fa-solid fa-pen-to-square"></i> Modifica
+            </button>
+            <button class="delete-button" onClick={() => {
+              console.log("Delete button clicked");
+              deleteMemberAPI(persona.id);
+            }}>
+              <i class="fa-solid fa-trash"></i> Elimina {persona.id}
+            </button>
           </div>
         )}
       </div>

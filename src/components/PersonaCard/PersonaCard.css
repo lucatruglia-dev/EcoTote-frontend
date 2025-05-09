@@ -138,3 +138,15 @@
     border-radius: 10px;
     margin-top: 10px;
 }
+
+.card-info .delete-button{
+    margin-left: 18px;
+    background-color: var(--orange);
+    color: white;
+    font-size: 15px;
+    padding: 8px 20px;
+    width: calc(100% - 36px);
+    border: none;
+    border-radius: 10px;
+    margin-top: 10px;
+}
