@@ -8,3 +8,5 @@ const deleteMemberAPI = async (id) => {
   });
   return response.json();
 };
+
+export { deleteMemberAPI };
