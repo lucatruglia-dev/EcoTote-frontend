@@ -92,6 +92,21 @@ async function addMembersAPI(members) {
 */
 
 const addMembersAPI = async (members) => {
+  let newMembers = [];
+  members.forEach(member => {
+    newMembers.push({
+      nome: member.nome,
+      cognome: member.cognome,
+      nickname: member.nickname,
+      icona: member.avatar,
+      peso: member.peso,
+      eta: member.eta,
+      sesso: member.sesso,
+      altezza: member.altezza,
+      tipo_dieta: member.dieta,
+      altro: member.altro
+    })
+  });
   try {
     const response = await fetch('https://api.ecotote.it/api/v1/user/member', {
       method: 'POST',
@@ -100,7 +115,7 @@ const addMembersAPI = async (members) => {
       },
       mode: 'cors',
       credentials: 'include',
-      body: JSON.stringify(members)
+      body: JSON.stringify(newMembers)
     });
 
     const result = await response.json();
