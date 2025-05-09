@@ -4,6 +4,7 @@ import './ListaCard.css';
 export default function ListaCard(props) {
   const [expanded, setExpanded] = createSignal(false); // Stato per gestire l'espansione della card
 
+  
   return (
     <>
       <div
@@ -16,7 +17,7 @@ export default function ListaCard(props) {
           </div>
           <div class="text">
             <div class="name">{props.nome}</div>
-            <span class="distance">{props.durata} giorni - {props.persone.length} persone</span>
+            <span class="distance">{props.durata} - {props.persone}</span>
           </div>
           <div class="buttons">
             <button>
@@ -29,9 +30,9 @@ export default function ListaCard(props) {
           <div class="card-info">
             <span class="line"><b>Nome:</b> {props.nome}</span>
             <span class="line"><b>Durata:</b> {props.durata}</span>
-            <span class="line"><b>Persone:</b> {props.persone && props.persone.length > 0 ? props.persone.join(', ') : 'Nessuna'}</span>
+            <span class="line"><b>Persone:</b> {props.persone}</span>
             <span class="line"><b>Preferenze: </b> {props.preferenze || 'Nessuna'}</span>
-            <button class="open-button" onClick={props.onDelete}>
+            <button class="open-button" onClick={() => window.location.href = `/lista_specifica/${props.id}`}>
               <i class="fa-solid fa-up-right-from-square"></i> Apri
             </button>
             <button class="delete-button" onClick={props.onDelete}>
