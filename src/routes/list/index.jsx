@@ -32,15 +32,19 @@ export default function List() {
 
       <div class="list">
         <div class="cards">
-          {liste().map((lista) => (
-            <ListaCard
-              nome={lista.nome}
-              durata={lista.durata + " giorni"} 
-              persone={lista.persone + " persone"}
-              preferenze={lista.categoria}
-              id={lista.id}
-            />
-          ))}
+          {!liste() || liste().length === 0 ? (
+            <p>Ancora nessuna lista...</p>
+          ) : (
+            liste().map((lista) => (
+              <ListaCard
+                nome={lista.nome}
+                durata={lista.durata + " giorni"} 
+                persone={lista.persone + " persone"}
+                preferenze={lista.categoria}
+                id={lista.id}
+              />
+            ))
+          )}
         </div>
       </div>
     </main>
