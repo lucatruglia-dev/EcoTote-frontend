@@ -119,9 +119,15 @@ export default function Login() {
         <A href="#" className="suggestion">
           Password dimenticata?
         </A>
-        <button className="btn btn-green" onClick={handleSubmit}>
+     
+        {/* <button className="btn btn-green" onClick={handleSubmit}>
+          Continua
+        </button> */}
+
+        <button className="btn btn-green" onClick={() => window.location.href = '/user_home'}>
           Continua
         </button>
+       
       </div>
 
       <Show when={showAlert()}>

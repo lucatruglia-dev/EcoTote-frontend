@@ -1,6 +1,5 @@
-import { createSignal, onMount } from 'solid-js';
+import { createSignal, onMount, Show } from 'solid-js';
 import './AddPersonaPopup.css';
-import { Show } from 'solid-js';
 import ChooseAvatar from '../ChooseAvatar/ChooseAvatar';
 
 export default function AddPersonaPopup(props) {
@@ -10,11 +9,24 @@ export default function AddPersonaPopup(props) {
   const [eta, setEta] = createSignal('');
   const [peso, setPeso] = createSignal('');
   const [altezza, setAltezza] = createSignal('');
-  const [sesso, setSesso] = createSignal('Maschio');
+  const [sesso, setSesso] = createSignal('M');
   const [dieta, setDieta] = createSignal('null');
   const [altro, setAltro] = createSignal('');
   const [avatar, setAvatar] = createSignal('default');
   const [showAvatarPicker, setShowAvatarPicker] = createSignal(false);
+
+  const resetForm = () => {
+    setNome('');
+    setCognome('');
+    setNickname('');
+    setEta('');
+    setPeso('');
+    setAltezza('');
+    setSesso('M');
+    setDieta('null');
+    setAltro('');
+    setAvatar('default');
+  };
 
   onMount(() => {
     if (props.initialData) {
@@ -25,12 +37,22 @@ export default function AddPersonaPopup(props) {
       setEta(eta || '');
       setPeso(peso || '');
       setAltezza(altezza || '');
-      setSesso(sesso || 'Maschio');
+      setSesso(sesso || 'M');
       setDieta(dieta || 'null');
       setAltro(altro || '');
       setAvatar(avatar || 'default');
+    } else {
+      resetForm();
     }
   });
+
+  // Reset form when popup is opened for a new user
+  const handleShowChange = (newShow) => {
+    if (newShow && !props.initialData) {
+      resetForm();
+    }
+    props.setShow(newShow);
+  };
 
   function salva() {
     const nuovaPersona = {
@@ -46,8 +68,12 @@ export default function AddPersonaPopup(props) {
       avatar: avatar(),
       expanded: false,
     };
-    props.onAdd(nuovaPersona);
-    props.setShow(false);
+    
+    const success = props.onAdd(nuovaPersona);
+    if (success) {
+      resetForm();
+      handleShowChange(false);
+    }
   }
 
   return (
@@ -82,8 +108,8 @@ export default function AddPersonaPopup(props) {
           <Show when={showAvatarPicker()}>
             <ChooseAvatar
               onSelect={(selectedAvatar) => {
-                setAvatar(selectedAvatar); // Salva l'avatar selezionato
-                setShowAvatarPicker(false); // Chiude il popup
+                setAvatar(selectedAvatar);
+                setShowAvatarPicker(false);
               }}
               onClose={() => setShowAvatarPicker(false)}
             />
@@ -92,8 +118,8 @@ export default function AddPersonaPopup(props) {
           <div class="options">
             <span class="label">Sesso:</span>
             <div class="buttons">
-              <button class={sesso() === 'Maschio' ? 'sel' : ''} onClick={() => setSesso('Maschio')}>Maschio</button>
-              <button class={sesso() === 'Femmina' ? 'sel' : ''} onClick={() => setSesso('Femmina')}>Femmina</button>
+              <button class={sesso() === 'M' ? 'sel' : ''} onClick={() => setSesso('M')}>Maschio</button>
+              <button class={sesso() === 'F' ? 'sel' : ''} onClick={() => setSesso('F')}>Femmina</button>
             </div>
           </div>
 
@@ -108,7 +134,7 @@ export default function AddPersonaPopup(props) {
           <textarea placeholder="Altro... (aggiungi preferenze, allergie, etc.)" value={altro()} onInput={(e) => setAltro(e.target.value)}></textarea>
 
           <div class="save-buttons">
-            <button onClick={() => props.setShow(false)}>Annulla</button>
+            <button onClick={() => handleShowChange(false)}>Annulla</button>
             <button onClick={salva}>Salva</button>
           </div>
         </div>
