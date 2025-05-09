@@ -56,10 +56,11 @@
 
 .card-top .text .name{
     font-weight: 600;
+    font-size: 16px;
 }
 
 .card-top .text .distance{
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     color: rgba(0, 0, 0, 0.651);
 }
