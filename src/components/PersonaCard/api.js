@@ -6,6 +6,8 @@ const deleteMemberAPI = async (id) => {
     mode: 'cors',
     credentials: 'include',
   });
+
+  window.location.reload();
   return response.json();
 };
 
