@@ -5,11 +5,6 @@ const generateListAPI = async (data) => {
         body: JSON.stringify(data)
     });
 
-    if (response.status === 401) {
-        window.location.href = "/login";
-        return;
-    }
-
 
     console.log("DONE [LOGS | Fetch] generateListAPI in /new_list");
     
