@@ -122,7 +122,6 @@ const getListAPI = async () => {
     return json_test_parsed;
 }
 
-
 */
 
 

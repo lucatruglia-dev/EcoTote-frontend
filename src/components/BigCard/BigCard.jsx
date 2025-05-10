@@ -1,10 +1,10 @@
 import './BigCard.css'
 
 export default function BigCard(props) {
-    const tags = props.tags.split(",")    
+    const tags = props.tags   
     console.log(tags);
     return(
-        <div className="big-card">
+        <div className="big-card" style={{background: props.color}}>
         <div className="top">
           <div className="left">
             <div className="icon"></div>

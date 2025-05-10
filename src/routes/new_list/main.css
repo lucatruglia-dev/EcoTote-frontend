@@ -174,12 +174,12 @@ header .title{
 
 .person-card{
   width: 100%;
-  height: 50px;
+  height: 60px;
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
   gap: 10px;
-  justify-content:space-between;
+  justify-content:flex-end;
   background-color: var(--input-bg);
   border-radius: 10px;
   animation: slideIn 0.5s ease-in-out;
@@ -192,17 +192,28 @@ header .title{
   cursor: pointer;
 }
 
+.person-card span{
+  font-size: 14px;
+  font-weight: 500 !important;
+}
+
+.person-card .avatar{
+  width: 40px;
+  margin-left: 10px;
+}
+
 
 .person-card input[type="checkbox"] {
   appearance: none;
   -webkit-appearance: none;
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   border: 2px solid #ccc;
   border-radius: 4px;
-  margin-right: 10px;
   position: relative;
   cursor: pointer;
+  margin-left: auto;
+  margin-right: 15px;
 }
 
 .person-card input[type="checkbox"]:checked {
@@ -262,4 +273,31 @@ header .title{
   color: white;
   
 
+}
+
+.success-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 1000;
+}
+
+.success-message span {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--green);
+}
+
+.success-message .btn {
+    width: 100%;
+    text-decoration: none;
 }

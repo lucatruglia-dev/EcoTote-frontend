@@ -1,15 +1,20 @@
 import { Title } from "@solidjs/meta";
-import { createSignal, Show } from "solid-js";
+import { createSignal, Show, onMount } from "solid-js";
 import AlertBox from "../../components/AlertBox/AlertBox";
 import './main.css'
+import getMembers from "../people/api";
+import { generateListAPI } from "./api";
+
 
 export default function NewList() {
     const [showPopup, setShowPopup] = createSignal(false);
     const [selectedPeople, setSelectedPeople] = createSignal([]);
     const [result, setResult] = createSignal({
-        title: "",
-        description: "",
-        people: []
+        nome: "",
+        durata: "",
+        persone: [],
+        altro: "",
+        icona: ""
     });
     const [isLoading, setIsLoading] = createSignal(false);
     const [showAlert, setShowAlert] = createSignal(false);
@@ -18,12 +23,20 @@ export default function NewList() {
         message: "",
         subMessage: ""
     });
+    const [listGenerated, setListGenerated] = createSignal(false);
+    const [generatedListId, setGeneratedListId] = createSignal(null);
 
-    const people = [
-        { id: 1, name: "Persona 1" },
-        { id: 2, name: "Persona 2" },
-        { id: 3, name: "Persona 3" }
-    ];
+    const [people, setPeople] = createSignal([]);
+
+    onMount(async () => {
+        const members = await getMembers();
+        console.log(members);
+        setPeople(members);
+    });
+    
+
+   
+
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -45,10 +58,10 @@ export default function NewList() {
     };
 
     const validateInputs = () => {
-        const { title, description } = result();
+        const { nome, durata } = result();
         
         // Validazione nome lista
-        if (!title) {
+        if (!nome) {
             showValidationAlert(
                 "fa-exclamation-circle",
                 "Nome lista mancante",
@@ -57,7 +70,7 @@ export default function NewList() {
             return false;
         }
 
-        if (title.length > 11) {
+        if (nome.length > 11) {
             showValidationAlert(
                 "fa-exclamation-circle",
                 "Nome lista troppo lungo",
@@ -66,7 +79,7 @@ export default function NewList() {
             return false;
         }
 
-        if (!/^[a-zA-Z][a-zA-Z0-9]*$/.test(title)) {
+        if (!/^[a-zA-Z][a-zA-Z0-9]*$/.test(nome)) {
             showValidationAlert(
                 "fa-exclamation-circle",
                 "Nome lista non valido",
@@ -76,7 +89,7 @@ export default function NewList() {
         }
 
         // Validazione durata
-        if (!description) {
+        if (!durata) {
             showValidationAlert(
                 "fa-exclamation-circle",
                 "Durata mancante",
@@ -85,7 +98,7 @@ export default function NewList() {
             return false;
         }
 
-        const duration = parseInt(description);
+        const duration = parseInt(durata);
         if (isNaN(duration)) {
             showValidationAlert(
                 "fa-exclamation-circle",
@@ -118,18 +131,30 @@ export default function NewList() {
     };
 
     const handleSave = () => {
-        setResult({ ...result(), people: selectedPeople() });
+        setResult({ ...result(), persone: selectedPeople() });
+        
         setShowPopup(false);
     };
 
-    const handleGenerateList = () => {
+    const handleGenerateList = async () => {
         if (!validateInputs()) {
             return;
         }
+
         setIsLoading(true);
-        setTimeout(() => {
+        try {
+            const response = await generateListAPI(result());
+            setGeneratedListId(response.id);
+            setListGenerated(true);
+        } catch (error) {
+            showValidationAlert(
+                "fa-exclamation-circle",
+                "Errore nella generazione",
+                "Si è verificato un errore durante la generazione della lista"
+            );
+        } finally {
             setIsLoading(false);
-        }, 2000); // Simula un caricamento di 2 secondi
+        }
     };
 
     const handlePopupClick = (e) => {
@@ -141,8 +166,10 @@ export default function NewList() {
     return (
         <>
             <header>
-                <div className="side left" onClick={() => window.location.href = '/list'}>
-                    <img src="assets/icons/arrow.svg" className="icon" />
+                <div className="side left">
+                    <a href="../user_home">
+                        <img src="assets/icons/arrow.svg" className="icon" />
+                    </a>
                 </div>
                 <div className="center">
                     <img src="assets/icons/carrot.svg" className="icon" />
@@ -153,9 +180,9 @@ export default function NewList() {
             <main>
                 <div className="new-list-box">
                     <span className="title">Nuova Lista</span>
-                    <input type="text" name="title" placeholder="Nome della lista della spesa" onChange={handleInputChange} />
-                    <input type="text" name="description" placeholder="Durata della spesa (in giorni)" onChange={handleInputChange} />
-                    <textarea name="other" placeholder="Altro... (aggiungi preferenze, allergie, etc.)" onChange={handleInputChange}></textarea>
+                    <input type="text" name="nome" placeholder="Nome della lista della spesa" onChange={handleInputChange} />
+                    <input type="text" name="durata" placeholder="Durata della spesa (in giorni)" onChange={handleInputChange} />
+                    <textarea name="altro" placeholder="Altro... (aggiungi preferenze, allergie, etc.)" onChange={handleInputChange}></textarea>
                     <button className="btn btn-green" onClick={() => setShowPopup(true)}>
                         <i className="fa-solid fa-users"></i> Seleziona Persone
                     </button>
@@ -168,15 +195,16 @@ export default function NewList() {
                     <div className="popup" onClick={handlePopupClick}>
                         <div className="popup-content">
                             <span className="title">Seleziona Persone</span>
-                            {people.map(person => (
+                            {people().map(person => (
                                 <div className="person-card" key={person.id}>
                                     <input
                                         type="checkbox"
                                         checked={selectedPeople().includes(person.id)}
                                         onChange={() => handlePersonSelect(person)}
                                     />
-                                    <span>{person.name}</span>
-                                </div>
+                                    <span>{person.nickname} - {person.eta} anni <br /> {person.tipo_dieta}</span>
+                                    <img src={"assets/avatars/"+ person.icona +".webp"} class="avatar" />
+                                    </div>
                             ))}
                             <button className="btn btn-green" onClick={handleSave}>
                                 Conferma
@@ -188,6 +216,15 @@ export default function NewList() {
                 {isLoading() && (
                     <div className="loading-overlay">
                         <i className="fa-solid fa-rotate fa-spin"></i>
+                    </div>
+                )}
+
+                {listGenerated() && (
+                    <div className="success-message">
+                        <span>LISTA GENERATA!</span>
+                        <a href={`/lista_specifica/${generatedListId()}`} className="btn btn-green">
+                            CLICCA QUI
+                        </a>
                     </div>
                 )}
 

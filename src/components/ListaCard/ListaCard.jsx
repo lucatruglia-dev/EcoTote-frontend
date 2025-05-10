@@ -1,5 +1,6 @@
 import { createSignal } from 'solid-js';
 import './ListaCard.css';
+import { deleteListAPI } from './api';
 
 export default function ListaCard(props) {
   const [expanded, setExpanded] = createSignal(false); // Stato per gestire l'espansione della card
@@ -35,7 +36,7 @@ export default function ListaCard(props) {
             <button class="open-button" onClick={() => window.location.href = `/lista_specifica/${props.id}`}>
               <i class="fa-solid fa-up-right-from-square"></i> Apri
             </button>
-            <button class="delete-button" onClick={props.onDelete}>
+            <button class="delete-button" onClick={async () => await deleteListAPI(props.id)}>
               <i class="fa-solid fa-trash"></i> Elimina
             </button>
           </div>
