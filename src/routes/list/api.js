@@ -126,21 +126,19 @@ const getListAPI = async () => {
 
 
 const getListAPI = async () => {
-  
-
-  try {
-    const response = await fetch('https://api.ecotote.it/api/v1/list', {
+    try {
+      const response = await fetch('https://api.ecotote.it/api/v1/list', {
         method: 'GET',
         mode: 'cors',
         credentials: 'include'
       });
-    console.log('DONE [LOGS | Fetch] getListAPI in /list or /lista_specifica:', result);
-    return response.json();
-} catch (error) {
-    console.log('ERROR [LOGS | Fetch] getListAPI in /list or /lista_specifica:', error);
-    return null;
-  }
-};
-
-
-export default getListAPI;
+      const data = await response.json();
+      console.log('DONE [LOGS | Fetch] getListAPI in /list or /lista_specifica:', data);
+      return data;
+    } catch (error) {
+      console.log('ERROR [LOGS | Fetch] getListAPI in /list or /lista_specifica:', error);
+      return null;
+    }
+  };
+  
+  export default getListAPI;
