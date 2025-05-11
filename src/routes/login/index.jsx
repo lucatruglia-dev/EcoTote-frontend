@@ -120,13 +120,14 @@ export default function Login() {
           Non hai un account? Registrati
         </A>
      
-        {/* <button className="btn btn-green" onClick={handleSubmit}>
+         <button className="btn btn-green" onClick={handleSubmit}>
           Continua
-        </button> */}
-
+        </button> 
+        
+        {/*
         <button className="btn btn-green" onClick={() => window.location.href = '/user_home'}>
           Continua
-        </button>
+        </button>*/}
        
       </div>
 
