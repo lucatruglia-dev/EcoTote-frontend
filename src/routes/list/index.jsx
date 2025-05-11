@@ -38,7 +38,7 @@ export default function List() {
             liste().map((lista) => (
               <ListaCard
                 nome={lista.nome}
-                durata={lista.durata + " giorni"} 
+                durata={lista.durata} 
                 persone={lista.persone + " persone"}
                 preferenze={lista.categoria}
                 id={lista.id}

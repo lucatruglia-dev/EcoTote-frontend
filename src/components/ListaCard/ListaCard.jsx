@@ -18,7 +18,8 @@ export default function ListaCard(props) {
           </div>
           <div class="text">
             <div class="name">{props.nome}</div>
-            <span class="distance">{props.durata} - {props.persone}</span>
+            <span class="distance">{props.durata}</span>
+            {/* <span class="distance">{props.durata} - {props.persone}</span> */}
           </div>
           <div class="buttons">
             <button>
@@ -31,8 +32,8 @@ export default function ListaCard(props) {
           <div class="card-info">
             <span class="line"><b>Nome:</b> {props.nome}</span>
             <span class="line"><b>Durata:</b> {props.durata}</span>
-            <span class="line"><b>Persone:</b> {props.persone}</span>
-            <span class="line"><b>Preferenze: </b> {props.preferenze || 'Nessuna'}</span>
+            {/* <span class="line"><b>Persone:</b> {props.persone}</span> */}
+            {/* <span class="line"><b>Preferenze: </b> {props.preferenze || 'Nessuna'}</span> */}
             <button class="open-button" onClick={() => window.location.href = `/lista_specifica/${props.id}`}>
               <i class="fa-solid fa-up-right-from-square"></i> Apri
             </button>
