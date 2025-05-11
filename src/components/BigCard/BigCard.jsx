@@ -4,7 +4,7 @@ export default function BigCard(props) {
     const tags = props.tags   
     console.log(tags);
     return(
-        <div className="big-card" style={{background: props.color}}>
+        <div className="big-card" style={{background: props.color}} onclick={() => {window.location.href = "/lista_specifica/d" + props.id}}>
         <div className="top">
           <div className="left">
             <div className="icon"></div>

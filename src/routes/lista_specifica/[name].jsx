@@ -3,6 +3,7 @@ import { useParams } from '@solidjs/router';
 import './main.css'
 import getListAPI from '../list/api';
 import { createSignal, onMount } from 'solid-js';
+import { getDefaultList } from '../user_home/api';
 
 export default function ListaSpecifica() {
     const params = useParams();
@@ -12,15 +13,36 @@ export default function ListaSpecifica() {
     const [lista, setLista] = createSignal({});
     const [alimenti, setAlimenti] = createSignal([]);
     onMount(async () => {
-        const result = await getListAPI();
-        for(let list of result){
-            if (list.id == name){
-                setLista(list);
-                setAlimenti(list.Aliments);
-                break;
-            }
+        const name_splitted = [...name];
+        console.log(name_splitted);
+        
+        if (name_splitted[0] != "d"){
+            console.log("[LOGS] NOT DEFAULT LIST");
             
+            const result = await getListAPI();
+            for(let list of result){
+                if (list.id == name){
+                    setLista(list);
+                    setAlimenti(list.Aliments);
+                    break;
+                }
+                
+            }
+        } else {
+            console.log("[LOGS] DEFAULT LIST");
+            const result = await getDefaultList();
+            console.log(result);
+            
+            for(let list of result){
+                if (list.id == name.split("d")[1]){
+                    setLista(list);
+                    setAlimenti(list.Aliments);
+                    break;
+                }
+            }
+
         }
+        
 
         
 
@@ -29,7 +51,7 @@ export default function ListaSpecifica() {
 
     return (
         <main>
-            <h1 className="title"><i className="fa-solid fa-arrow-left" onclick={() => window.location.href = '/list'}></i> {lista().nome}</h1>
+            <h1 className="title"><i className="fa-solid fa-arrow-left" onclick={() => window.history.back()}></i> {lista().nome}</h1>
             {alimenti().map((aliment) => (
                 <ProdottoCard 
                     nome={aliment.nome}
