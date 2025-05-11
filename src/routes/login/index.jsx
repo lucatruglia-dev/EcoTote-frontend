@@ -101,7 +101,7 @@ export default function Login() {
       </header>
 
       <div className="login-box">
-        <span className="title">Login</span>
+        <span className="title">Accedi</span>
         <input 
           type="email" 
           name="email"
@@ -116,8 +116,8 @@ export default function Login() {
           value={formData().password}
           onChange={handleInputChange}
         />
-        <A href="#" className="suggestion">
-          Password dimenticata?
+        <A href="../register" className="suggestion">
+          Non hai un account? Registrati
         </A>
      
         {/* <button className="btn btn-green" onClick={handleSubmit}>

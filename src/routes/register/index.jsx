@@ -202,7 +202,7 @@ export default function Register() {
       </header>
 
       <div className="login-box">
-        <span className="title">Register</span>
+        <span className="title">Registrati</span>
         <input 
           type="text" 
           name="nome"
@@ -266,7 +266,7 @@ export default function Register() {
             checked={formData().tos}
             onChange={handleInputChange}
           />
-          <label htmlFor="tos">Accetto i <A href="#">termini e condizioni</A> e <A href="#">cookie policy</A></label>
+          <label htmlFor="tos">Accetto i <A href="https://ecotote.it/terminiEservizi.html">termini e condizioni</A></label>
         </div>
         <button className="btn btn-green" onClick={handleSubmit}>
           Continua
