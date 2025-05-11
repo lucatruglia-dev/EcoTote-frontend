@@ -16,6 +16,9 @@ const sendRegister = async (userData) => {
       throw new Error(result || 'Errore durante la registrazione');
     }
 
+    
+    window.location.href = '/login';
+
     return {
       success: true,
       message: "Registrazione completata con successo"
