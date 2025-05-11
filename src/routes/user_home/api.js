@@ -4,6 +4,7 @@ const json_data = `
       "nome": "Lista Onnivoro 1",
       "categoria": "onnivoro",
       "tags":["carne","verdura","pasta"],
+      "id": 1,
       "durata": 6,
       "persone": null,
       "id_user": 11,
@@ -71,6 +72,7 @@ const json_data = `
       "nome": "Lista Onnivoro 2",
       "categoria": "onnivoro",
       "tags":["pesce","verdura","pasta"],
+      "id": 2,
       "durata": 7,
       "persone": null,
       "id_user": 11,
@@ -138,6 +140,7 @@ const json_data = `
       "nome": "Lista Onnivoro 3",
       "categoria": "onnivoro",
       "tags":["pesce","verdura","riso"],
+      "id": 3,
       "durata": 8,
       "persone": null,
       "id_user": 11,
@@ -205,6 +208,7 @@ const json_data = `
       "nome": "Lista Vegetariano 1",
       "categoria": "vegetariano",
       "tags":["legumi","verdura","pasta"],
+      "id": 4,
       "durata": 6,
       "persone": null,
       "id_user": 11,
@@ -272,6 +276,7 @@ const json_data = `
       "nome": "Lista Vegetariano 2",
       "categoria": "vegetariano",
       "tags":["latticini","verdura","riso"],
+      "id": 5,
       "durata": 7,
       "persone": null,
       "id_user": 11,
@@ -339,6 +344,7 @@ const json_data = `
       "nome": "Lista Vegetariano 3",
       "categoria": "vegetariano",
       "tags":["legumi","verdura","uova"],
+      "id": 6,
       "durata": 8,
       "persone": null,
       "id_user": 11,
@@ -406,6 +412,7 @@ const json_data = `
       "nome": "Lista Vegano 1",
       "categoria": "vegano",
       "tags":["legumi","verdura","pane"],
+      "id": 7,
       "durata": 6,
       "persone": null,
       "id_user": 11,
@@ -473,6 +480,7 @@ const json_data = `
       "nome": "Lista Vegano 2",
       "categoria": "vegano",
       "tags":["riso","verdura","frutta"],
+      "id": 8,
       "durata": 7,
       "persone": null,
       "id_user": 11,
@@ -540,6 +548,7 @@ const json_data = `
       "nome": "Lista Vegano 3",
       "categoria": "vegano",
       "tags":["cereali","verdura","snack"],
+      "id": 9,
       "durata": 8,
       "persone": null,
       "id_user": 11,
@@ -615,3 +624,72 @@ const getDefaultList = async () => {
 }
 
 export { getDefaultList }
+
+export async function getNearbySupermarkets(latitude, longitude) {
+  try {
+    // Query per trovare i supermercati nel raggio di 5km
+    const query = `
+      [out:json][timeout:25];
+      (
+        node["shop"="supermarket"](around:5000,${latitude},${longitude});
+        node["shop"="convenience"](around:5000,${latitude},${longitude});
+      );
+      out body;
+      >;
+      out skel qt;
+    `;
+
+    const response = await fetch('https://overpass-api.de/api/interpreter', {
+      method: 'POST',
+      body: query
+    });
+
+    const data = await response.json();
+    
+    if (data.elements && data.elements.length > 0) {
+      return data.elements.map(place => ({
+        id: place.id,
+        name: place.tags.name || 'Supermercato',
+        distance: calculateDistance(latitude, longitude, place.lat, place.lon),
+        icon: place.tags.shop === 'supermarket' 
+          ? 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Lidl_logo.png/960px-Lidl_logo.png'
+          : 'https://play-lh.googleusercontent.com/qhCk-KOnqgRbly6nRGwlRC9NP1g83zPKR2s5rX_jtRIjfMHh-0AkQoAMmb26hhAavA',
+        location: {
+          lat: place.lat,
+          lng: place.lon
+        }
+      })).sort((a, b) => {
+        // Ordina per distanza
+        const distA = parseFloat(a.distance);
+        const distB = parseFloat(b.distance);
+        return distA - distB;
+      });
+    }
+    return [];
+  } catch (error) {
+    console.error('Error fetching nearby supermarkets:', error);
+    return [];
+  }
+}
+
+// Helper function to calculate distance between two points using Haversine formula
+function calculateDistance(lat1, lon1, lat2, lon2) {
+  const R = 6371; // Radius of the earth in km
+  const dLat = deg2rad(lat2 - lat1);
+  const dLon = deg2rad(lon2 - lon1);
+  const a = 
+    Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+    Math.sin(dLon/2) * Math.sin(dLon/2); 
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+  const distance = R * c; // Distance in km
+  
+  if (distance < 1) {
+    return Math.round(distance * 1000) + 'm';
+  }
+  return Math.round(distance * 10) / 10 + 'km';
+}
+
+function deg2rad(deg) {
+  return deg * (Math.PI/180);
+}

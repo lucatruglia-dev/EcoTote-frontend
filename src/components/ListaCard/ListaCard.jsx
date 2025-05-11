@@ -14,7 +14,7 @@ export default function ListaCard(props) {
       >
         <div class="card-top" onClick={() => setExpanded(!expanded())}> {/* Rende cliccabile card-top */}
           <div class="icon">
-            <img src={`/assets/avatars/${props.avatar || 'default'}.webp`} alt="Avatar" />
+            <img src={`/assets/icons/tote.webp`} alt="Avatar" />
           </div>
           <div class="text">
             <div class="name">{props.nome}</div>
