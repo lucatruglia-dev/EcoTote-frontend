@@ -63,27 +63,27 @@ export default function NewList() {
         // Validazione nome lista
         if (!nome) {
             showValidationAlert(
-                "fa-exclamation-circle",
-                "Nome lista mancante",
-                "Inserisci un nome per la lista"
+            "fa-exclamation-circle",
+            "Nome lista mancante",
+            "Inserisci un nome per la lista"
             );
             return false;
         }
 
-        if (nome.length > 11) {
+        if (nome.length > 25) {
             showValidationAlert(
-                "fa-exclamation-circle",
-                "Nome lista troppo lungo",
-                "Il nome della lista non può superare gli 11 caratteri"
+            "fa-exclamation-circle",
+            "Nome lista troppo lungo",
+            "Il nome della lista non può superare i 25 caratteri"
             );
             return false;
         }
 
-        if (!/^[a-zA-Z][a-zA-Z0-9]*$/.test(nome)) {
+        if (!/^[a-zA-Z][a-zA-Z0-9 ]*$/.test(nome)) {
             showValidationAlert(
-                "fa-exclamation-circle",
-                "Nome lista non valido",
-                "Il nome deve iniziare con una lettera e contenere solo lettere e numeri"
+            "fa-exclamation-circle",
+            "Nome lista non valido",
+            "Il nome deve iniziare con una lettera e contenere solo lettere, numeri e spazi"
             );
             return false;
         }
