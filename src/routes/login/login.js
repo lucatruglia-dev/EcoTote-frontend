@@ -26,7 +26,7 @@ const sendLogin = async (userData) => {
       return {
         success: false,
         message: "Errore di login",
-        subMessage: error.message || "Si è verificato un errore durante il login"
+        subMessage: "Si è verificato un errore durante il login"
       };
     }
   };
