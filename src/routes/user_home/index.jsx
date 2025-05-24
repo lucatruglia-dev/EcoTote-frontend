@@ -207,7 +207,7 @@ export default function Home() {
             </div>
           ) : (
             <div className="cards">
-              {nearbySupermarkets().map((supermarket) => (
+              {nearbySupermarkets().slice(0, 5).map((supermarket) => (
                 <div className="card" key={supermarket.id}>
                   <div className="icon">
                     <img src={"https://cdn-icons-png.flaticon.com/512/1198/1198361.png"} alt={supermarket.name} />

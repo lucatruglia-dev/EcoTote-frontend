@@ -7,7 +7,7 @@ export default function BigCard(props) {
         <div className="big-card" style={{background: props.color}} onclick={() => {window.location.href = "/lista_specifica/d" + props.id}}>
         <div className="top">
           <div className="left">
-            <div className="icon"></div>
+            <div className="icon"><img src={"assets/icons/tote.webp"} alt="" /> </div>
           </div>
           <div className="right">
             <span className="title">{props.title}</span>

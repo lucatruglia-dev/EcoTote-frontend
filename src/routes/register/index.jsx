@@ -178,7 +178,7 @@ export default function Register() {
     const response = await sendRegister(userData);
     
     if (response.success) {
-      window.location.href = '/user_home';
+      window.location.href = '/people';
     } else {
       setAlertConfig({
         icon: "fa-exclamation-circle",

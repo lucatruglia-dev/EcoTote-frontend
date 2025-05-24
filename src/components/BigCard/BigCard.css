@@ -23,6 +23,14 @@
     height: 40px;
     background-color: white;
     border-radius: 50%;
+    display: flex;
+	justify-content: center;
+align-items: center;
+}
+
+.big-card .top .icon img{
+	width: 20px;
+	height: auto
 }
 
 .big-card .top .right{

@@ -1,7 +1,7 @@
 const json_data = `
 [
     {
-      "nome": "Lista Onnivoro 1",
+      "nome": "Lista per la famiglia",
       "categoria": "onnivoro",
       "tags":["carne","verdura","pasta"],
       "id": 1,
@@ -69,7 +69,7 @@ const json_data = `
       ]
     },
     {
-      "nome": "Lista Onnivoro 2",
+      "nome": "Lista per gli amici",
       "categoria": "onnivoro",
       "tags":["pesce","verdura","pasta"],
       "id": 2,
@@ -137,7 +137,7 @@ const json_data = `
       ]
     },
     {
-      "nome": "Lista Onnivoro 3",
+      "nome": "Lista pesce",
       "categoria": "onnivoro",
       "tags":["pesce","verdura","riso"],
       "id": 3,
@@ -205,7 +205,7 @@ const json_data = `
       ]
     },
     {
-      "nome": "Lista Vegetariano 1",
+      "nome": "Lista vegetariana",
       "categoria": "vegetariano",
       "tags":["legumi","verdura","pasta"],
       "id": 4,
@@ -273,7 +273,7 @@ const json_data = `
       ]
     },
     {
-      "nome": "Lista Vegetariano 2",
+      "nome": "Lista con verdure",
       "categoria": "vegetariano",
       "tags":["latticini","verdura","riso"],
       "id": 5,
@@ -341,7 +341,7 @@ const json_data = `
       ]
     },
     {
-      "nome": "Lista Vegetariano 3",
+      "nome": "Lista con legumi",
       "categoria": "vegetariano",
       "tags":["legumi","verdura","uova"],
       "id": 6,
@@ -409,7 +409,7 @@ const json_data = `
       ]
     },
     {
-      "nome": "Lista Vegano 1",
+      "nome": "Lista vegana",
       "categoria": "vegano",
       "tags":["legumi","verdura","pane"],
       "id": 7,
@@ -477,7 +477,7 @@ const json_data = `
       ]
     },
     {
-      "nome": "Lista Vegano 2",
+      "nome": "Lista per amici vegani",
       "categoria": "vegano",
       "tags":["riso","verdura","frutta"],
       "id": 8,
@@ -545,7 +545,7 @@ const json_data = `
       ]
     },
     {
-      "nome": "Lista Vegano 3",
+      "nome": "Lista vegana e snack",
       "categoria": "vegano",
       "tags":["cereali","verdura","snack"],
       "id": 9,

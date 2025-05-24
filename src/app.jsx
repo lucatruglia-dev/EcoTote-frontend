@@ -13,6 +13,7 @@ export default function App() {
           <Suspense>
             {props.children}
           </Suspense>
+	  <Title>EcoTote | App</Title>
           <Menu />
         </MetaProvider>
       )}

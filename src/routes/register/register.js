@@ -17,7 +17,7 @@ const sendRegister = async (userData) => {
     }
 
     
-    window.location.href = '/login';
+    window.location.href = '/people';
 
     return {
       success: true,
